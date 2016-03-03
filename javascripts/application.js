@@ -24,27 +24,40 @@ function updateChecklistPoints() {
   let $checkItemsLists = $(".js-checklist-items-list");
 
   $checkItemsLists.each(function() {
-    console.log('(*^^*): ', this);
     let $checkItems = $(this).find(".js-checkitem-name");
-    let point = calcChecklistPoints($checkItems);
-    console.log("＼(^o^)／: ", point);
+    let point = Math.round(calcChecklistPoints($checkItems) * 10) / 10;
+    let $title = $(this).parents(".checklist").find("h3")
+
+    if ($title.find("span").length) {
+      $pointElm = $title.find("span")
+    } else {
+      $pointElm = $("<span>").appendTo($title);
+    }
+
+    $pointElm.text(` (${point})`);
   });
 }
 
 let checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
   $.each(mutations, function(index, mutation) {
     let $target = $(mutation.target);
-    console.log('(^o^)');
 
     if (
       // チェックリストが更新されたとき
       $target.hasClass("js-checkitem-name") ||
       // チェックリストにタスクが追加されたとき
-      $target.hasClass("js-show-checked-items")
+      $target.hasClass("js-show-checked-items") ||
+      $target.hasClass("hide-on-edit")
     ) {
       updateChecklistPoints()
     }
   });
 }), 500);
+
+$(function() {
+  setTimeout(function() {
+    updateChecklistPoints()
+  }, 3000);
+});
 
 checklistMutationObserver.observe(document.body, MutationObserverInitOptions);

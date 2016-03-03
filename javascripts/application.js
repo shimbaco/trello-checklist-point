@@ -47,7 +47,10 @@ let checklistMutationObserver = new MutationObserver(_.debounce(function(mutatio
       $target.hasClass("js-checkitem-name") ||
       // チェックリストにタスクが追加されたとき
       $target.hasClass("js-show-checked-items") ||
-      $target.hasClass("hide-on-edit")
+      // チェックリストのタイトルを編集したとき
+      $target.hasClass("hide-on-edit") ||
+      // 一覧ページからカードを選択したとき
+      $target.hasClass("js-list-actions")
     ) {
       updateChecklistPoints()
     }

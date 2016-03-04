@@ -41,6 +41,7 @@ function updateChecklistPoints() {
 var checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
   $.each(mutations, function(index, mutation) {
     var $target = $(mutation.target);
+    console.log($target);
 
     if (
       // チェックリストが更新されたとき

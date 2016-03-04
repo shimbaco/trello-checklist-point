@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Trello Checklist Point",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Trelloのチェックリストに追加したポイントを足し算するエクステンション",
   "icons": {
     "128": "images/icon.png"

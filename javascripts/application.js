@@ -27,14 +27,12 @@ function updateChecklistPoints() {
     var $checkItems = $(this).find(".js-checkitem-name");
     var point = Math.round(calcChecklistPoints($checkItems) * 10) / 10;
     var $title = $(this).parents(".checklist").find("h3")
-    console.log("point: ", point);
 
     if ($title.find("span").length) {
       $pointElm = $title.find("span")
     } else {
       $pointElm = $("<span>").appendTo($title);
     }
-    console.log("$pointElm: ", $pointElm);
 
     $pointElm.text(" (" + point + ")");
   });
@@ -43,7 +41,6 @@ function updateChecklistPoints() {
 var checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
   $.each(mutations, function(index, mutation) {
     var $target = $(mutation.target);
-    console.log("$target: ", $target);
 
     if (
       // チェックリストが更新されたとき
@@ -56,7 +53,6 @@ var checklistMutationObserver = new MutationObserver(_.debounce(function(mutatio
       $target.hasClass("js-list-actions") ||
       $target.hasClass("js-list-header")
     ) {
-      console.log("================================================================== update!");
       updateChecklistPoints()
     }
   });

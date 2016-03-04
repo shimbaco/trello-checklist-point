@@ -1,4 +1,4 @@
-const MutationObserverInitOptions = {
+var MutationObserverInitOptions = {
   childList: true,
   characterData: true,
   attributes: false,
@@ -6,14 +6,14 @@ const MutationObserverInitOptions = {
 };
 
 function calcChecklistPoints($checkItems) {
-  let checkItemPoints = _.map($checkItems, function(checkItem) {
-    let checkItemText = $(checkItem).text();
-    let match = checkItemText.match(/\[(\d+\.*\d*)\]/);
+  var checkItemPoints = _.map($checkItems, function(checkItem) {
+    var checkItemText = $(checkItem).text();
+    var match = checkItemText.match(/\[(\d+\.*\d*)\]/);
 
     return match ? Number(match[1]) : 0;
   });
 
-  let sum = _.reduce(checkItemPoints, function(sum, point) {
+  var sum = _.reduce(checkItemPoints, function(sum, point) {
     return sum + point;
   }, 0);
 
@@ -21,12 +21,12 @@ function calcChecklistPoints($checkItems) {
 }
 
 function updateChecklistPoints() {
-  let $checkItemsLists = $(".js-checklist-items-list");
+  var $checkItemsLists = $(".js-checklist-items-list");
 
   $checkItemsLists.each(function() {
-    let $checkItems = $(this).find(".js-checkitem-name");
-    let point = Math.round(calcChecklistPoints($checkItems) * 10) / 10;
-    let $title = $(this).parents(".checklist").find("h3")
+    var $checkItems = $(this).find(".js-checkitem-name");
+    var point = Math.round(calcChecklistPoints($checkItems) * 10) / 10;
+    var $title = $(this).parents(".checklist").find("h3")
 
     if ($title.find("span").length) {
       $pointElm = $title.find("span")
@@ -34,13 +34,13 @@ function updateChecklistPoints() {
       $pointElm = $("<span>").appendTo($title);
     }
 
-    $pointElm.text(` (${point})`);
+    $pointElm.text(" (" + point + ")");
   });
 }
 
-let checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
+var checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
   $.each(mutations, function(index, mutation) {
-    let $target = $(mutation.target);
+    var $target = $(mutation.target);
 
     if (
       // チェックリストが更新されたとき

@@ -43,6 +43,7 @@ function updateChecklistPoints() {
 var checklistMutationObserver = new MutationObserver(_.debounce(function(mutations) {
   $.each(mutations, function(index, mutation) {
     var $target = $(mutation.target);
+    console.log("$target: ", $target);
 
     if (
       // チェックリストが更新されたとき
@@ -54,7 +55,7 @@ var checklistMutationObserver = new MutationObserver(_.debounce(function(mutatio
       // 一覧ページからカードを選択したとき
       $target.hasClass("js-list-actions")
     ) {
-      console.log("update!");
+      console.log("================================================================== update!");
       updateChecklistPoints()
     }
   });

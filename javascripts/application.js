@@ -53,7 +53,8 @@ var checklistMutationObserver = new MutationObserver(_.debounce(function(mutatio
       // チェックリストのタイトルを編集したとき
       $target.hasClass("hide-on-edit") ||
       // 一覧ページからカードを選択したとき
-      $target.hasClass("js-list-actions")
+      $target.hasClass("js-list-actions") ||
+      $target.hasClass("js-list-header")
     ) {
       console.log("================================================================== update!");
       updateChecklistPoints()

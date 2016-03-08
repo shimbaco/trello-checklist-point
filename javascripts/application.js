@@ -25,7 +25,7 @@ function updateChecklistPoints() {
 
   $checkItemsLists.each(function() {
     var $checkItems = $(this).find(".js-checkitem-name");
-    var point = Math.round(calcChecklistPoints($checkItems) * 10) / 10;
+    var point = Math.round(calcChecklistPoints($checkItems) * 100) / 100;
     var $title = $(this).parents(".checklist").find("h3")
 
     if ($title.find("span").length) {
